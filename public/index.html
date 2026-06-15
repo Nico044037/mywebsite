@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin</title>
+</head>
+<body>
+    <input id="cmd" placeholder="Message">
+    <button onclick="send()">Broadcast</button>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        function send() {
+            socket.emit(
+                "broadcast",
+                document.getElementById("cmd").value
+            );
+        }
+    </script>
+</body>
+</html>
