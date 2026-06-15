@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin</title>
+    <title>Broadcast Viewer</title>
 </head>
 <body>
-    <input id="cmd" placeholder="Message">
-    <button onclick="send()">Broadcast</button>
+    <h1>Broadcasts</h1>
+    <div id="messages"></div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
 
-        function send() {
-            socket.emit(
-                "broadcast",
-                document.getElementById("cmd").value
-            );
-        }
+        socket.on("broadcast", (msg) => {
+            const div = document.createElement("div");
+            div.textContent = msg;
+            document.getElementById("messages").appendChild(div);
+        });
     </script>
 </body>
 </html>
