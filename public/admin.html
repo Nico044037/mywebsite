@@ -1,1 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+</head>
+<body>
+    <h1>Admin Broadcast</h1>
 
+    <input id="msg" placeholder="Message">
+    <button onclick="send()">Send</button>
+
+    <script>
+        async function send() {
+            const msg = document.getElementById("msg").value;
+
+            await fetch("/api/broadcast", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    message: msg
+                })
+            });
+
+            alert("Broadcast sent!");
+        }
+    </script>
+</body>
+</html>
