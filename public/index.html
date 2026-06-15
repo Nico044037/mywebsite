@@ -1,1 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Broadcast Viewer</title>
+</head>
+<body>
+    <h1>Live Broadcast</h1>
 
+    <div id="message">Waiting for messages...</div>
+
+    <script>
+        async function update() {
+            const res = await fetch("/api/latest");
+            const data = await res.json();
+
+            document.getElementById("message").textContent =
+                data.message || "Waiting for messages...";
+        }
+
+        update();
+        setInterval(update, 2000);
+    </script>
+</body>
+</html>
